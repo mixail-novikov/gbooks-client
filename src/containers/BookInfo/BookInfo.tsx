@@ -1,9 +1,5 @@
 import * as React from "react";
-import {
-  BookQuery,
-  IBookQueryVariables,
-  query
-} from "./BookQuery";
+import { BookQuery, IBookQueryVariables, query } from "./BookQuery";
 
 export interface IBookInfoProps extends IBookQueryVariables {
   id: string;

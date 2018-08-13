@@ -17,7 +17,7 @@ export class BookQuery extends Query<BookInfo, BookInfoVariables> {}
 export const query = gql`
   query BookInfo($id: String!) {
     volume(id: $id) {
-      id,
+      id
       title
     }
   }

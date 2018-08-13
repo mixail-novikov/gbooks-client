@@ -7,13 +7,15 @@ import {
   BooksVariables
 } from "./__generated__/Books";
 
+type IBooksVariables = Partial<BooksVariables>;
+
 export {
   Books_volumes_items as IBooksItem,
   Books as IBooksData,
-  BooksVariables as IBooksVariables
+  IBooksVariables
 };
 
-export class BooksQuery extends Query<Books, BooksVariables> {}
+export class BooksQuery extends Query<Books, IBooksVariables> {}
 
 export const query = gql`
   query Books($q: String!) {
