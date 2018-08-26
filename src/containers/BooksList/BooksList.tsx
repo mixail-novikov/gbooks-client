@@ -1,15 +1,13 @@
 import * as React from "react";
 import { Book } from "../../components/Book";
-import { BooksQuery, IBooksItem, query } from "./BooksQuery";
-
-export { IBooksItem };
+import { Books } from "../../generated-models";
 
 export interface IBooksListProps {
   q: string;
 }
 
 export const BooksList: React.SFC<IBooksListProps> = ({ q }) => (
-  <BooksQuery query={query} variables={{ q }}>
+  <Books.Component variables={{ q }}>
     {({ loading, error, data }) => {
       if (loading) {
         return "Loading...";
@@ -23,10 +21,8 @@ export const BooksList: React.SFC<IBooksListProps> = ({ q }) => (
         data &&
         data.volumes &&
         data.volumes.items &&
-        data.volumes.items.map((props: IBooksItem) => (
-          <Book key={props.id} {...props} />
-        ))
+        data.volumes.items.map((props: Books.Items) => <Book key={props.id} {...props} />)
       );
     }}
-  </BooksQuery>
+  </Books.Component>
 );
