@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@types/query-string": "^6.1.0",
-    "apollo": "^1.7.0",
     "apollo-boost": "^0.1.13",
     "graphql": "^0.13.2",
     "query-string": "^6.1.0",
@@ -20,17 +19,24 @@
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
-    "download_schema": "apollo schema:download --endpoint http://localhost:4000",
-    "generate_types": "npx apollo codegen:generate --target=typescript --schema=schema.json",
-    "make_schema": "npm run download_schema && npm run generate_types"
+    "generate_types": "yarn gql-gen --schema http://localhost:4000/ --template graphql-codegen-typescript-react-apollo-template --skip-schema --out ./src/generated-models.tsx \"./src/**/*.gql\" && sed -i '' -e 's/&quot;/\"/g' ./src/generated-models.tsx",
+    "precommit": "pretty-quick --staged"
   },
   "devDependencies": {
+    "@types/graphql": "^0.13.4",
     "@types/jest": "^23.3.1",
     "@types/node": "^10.5.8",
     "@types/react": "^16.4.9",
     "@types/react-dom": "^16.0.7",
     "@types/react-router-dom": "^4.3.0",
     "@types/recompose": "^0.26.4",
+    "graphql-code-generator": "^0.11.0",
+    "graphql-codegen-typescript-react-apollo-template": "^0.11.0",
+    "hasky": "^3.0.2",
+    "prettier": "^1.14.2",
+    "pretty-quick": "^1.6.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-react": "^3.6.0",
     "typescript": "^3.0.1"
   }
 }

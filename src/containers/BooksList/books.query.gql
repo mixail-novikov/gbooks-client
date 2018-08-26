@@ -1,0 +1,9 @@
+query Books($q: String!) {
+  volumes(q: $q) {
+    items {
+      title
+      id
+      date(format: "YYYY")
+    }
+  }
+}
