@@ -8,6 +8,10 @@
 export interface Books_volumes_items {
   title: string | null;
   id: string;
+  /**
+   * Дата, поддерживает форматирование с помощью moment.js
+   */
+  date: string | null;
 }
 
 export interface Books_volumes {

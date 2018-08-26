@@ -23,6 +23,7 @@ export const query = gql`
       items {
         title
         id
+        date(format: "YYYY")
       }
     }
   }

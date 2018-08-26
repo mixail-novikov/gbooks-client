@@ -1,13 +1,14 @@
 import * as React from "react";
-import { BooksQuery, IBooksItem, IBooksVariables, query } from "./BooksQuery";
+import { Book } from "../../components/Book";
+import { BooksQuery, IBooksItem, query } from "./BooksQuery";
 
 export { IBooksItem };
 
-export interface IBooksListProps extends IBooksVariables {
-  renderBook: (book: IBooksItem) => JSX.Element;
+export interface IBooksListProps {
+  q: string;
 }
 
-export const BooksList: React.SFC<IBooksListProps> = ({ q, renderBook }) => (
+export const BooksList: React.SFC<IBooksListProps> = ({ q }) => (
   <BooksQuery query={query} variables={{ q }}>
     {({ loading, error, data }) => {
       if (loading) {
@@ -22,7 +23,9 @@ export const BooksList: React.SFC<IBooksListProps> = ({ q, renderBook }) => (
         data &&
         data.volumes &&
         data.volumes.items &&
-        data.volumes.items.map(renderBook)
+        data.volumes.items.map((props: IBooksItem) => (
+          <Book key={props.id} {...props} />
+        ))
       );
     }}
   </BooksQuery>
